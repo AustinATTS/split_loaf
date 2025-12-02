@@ -6,23 +6,45 @@ HHOOK keyboardHook;
 HWND targetWindow = NULL;
 int locked = 0;
 
+void SendVirtualKeyToTarget(DWORD vkCode) {
+    INPUT in[2] = {0};
+
+    // Key down
+    in[0].type = INPUT_KEYBOARD;
+    in[0].ki.wVk = vkCode;
+    in[0].ki.dwFlags = 0;
+
+    // Key up
+    in[1].type = INPUT_KEYBOARD;
+    in[1].ki.wVk = vkCode;
+    in[1].ki.dwFlags = KEYEVENTF_KEYUP;
+
+    SendInput(2, in, sizeof(INPUT));
+}
+
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
     if (nCode == HC_ACTION) {
         KBDLLHOOKSTRUCT *kbd = (KBDLLHOOKSTRUCT *)lParam;
 
-        // Hotkeys
+        // Ignore synthetic keystrokes we injected ourselves
+        if (kbd->flags & LLKHF_INJECTED) {
+            return CallNextHookEx(NULL, nCode, wParam, lParam);
+        }
+
         if (wParam == WM_KEYDOWN) {
-            if (kbd->vkCode == VK_F6) {  // Lock
+            if (kbd->vkCode == VK_F6) {
                 locked = (targetWindow != NULL);
                 printf("Locked: %d\n", locked);
-                return 1; // suppress key
+                return 1;
             }
-            if (kbd->vkCode == VK_F7) {  // Unlock
+
+            if (kbd->vkCode == VK_F7) {
                 locked = 0;
                 printf("Unlocked\n");
                 return 1;
             }
-            if (kbd->vkCode == VK_F8) {  // Set target window
+
+            if (kbd->vkCode == VK_F8) {
                 POINT p;
                 GetCursorPos(&p);
                 targetWindow = WindowFromPoint(p);
@@ -31,27 +53,27 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
             }
         }
 
-        // Reroute typing
-        if (locked && wParam == WM_KEYDOWN && targetWindow != NULL) {
-            BYTE keyState[256];
-            GetKeyboardState(keyState);
+        // Reroute keystrokes
+        if (locked && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)) {
+            if (targetWindow) {
+                HWND prev = GetForegroundWindow();
+                SetForegroundWindow(targetWindow);
+                Sleep(1);
 
-            WCHAR buff[2];
-            int res = ToUnicode(kbd->vkCode, kbd->scanCode, keyState, buff, 2, 0);
+                SendVirtualKeyToTarget(kbd->vkCode);
 
-            if (res > 0) {
-                // Send each character
-                for (int i = 0; i < res; i++) {
-                    PostMessageW(targetWindow, WM_CHAR, buff[i], 0);
+                if (prev) {
+                    SetForegroundWindow(prev);
                 }
-            }
 
-            return 1; // swallow key globally
+                return 1; // swallow original
+            }
         }
     }
 
     return CallNextHookEx(NULL, nCode, wParam, lParam);
 }
+
 
 int main() {
     printf("Split Loaf daemon running...\n");
