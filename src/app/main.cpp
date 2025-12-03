@@ -1,14 +1,12 @@
-#include "core/Platform.h"
-#include "win/WinApp.h"   // runs the Windows GUI loop
-
-int main() {
 #ifdef _WIN32
+#include <windows.h>
+extern int RunWindowsApp();
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
     return RunWindowsApp();
-#else
-    // other OS logic later
-    Platform::init();
-    Platform::processEvents();
-    Platform::shutdown();
-    return 0;
-#endif
 }
+#else
+int main() {
+    return 0;
+}
+#endif
