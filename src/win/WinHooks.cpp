@@ -54,7 +54,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
                 targetHasFocus = 1;
             }
 
-            WinBackend::sendVirtualKey(kbd->vkCode, 1);
+            WinBackend::sendVirtualKey(kbd->vkCode);
             return 1;
         }
     }

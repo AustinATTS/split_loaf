@@ -12,5 +12,5 @@ namespace WinBackend {
     void unlockInput();
 
     bool processEvents();
-    void sendVirtualKey(uint32_t vk, bool KeyDown);
+    void sendVirtualKey(uint32_t vk);
 }
