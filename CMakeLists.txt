@@ -20,8 +20,13 @@ if (WIN32)
 
     target_include_directories(split-loaf PUBLIC src)
     target_link_libraries(split-loaf user32 gdi32 shell32)
+    if(MSVC)
+        set_target_properties(split-loaf PROPERTIES WIN32_EXECUTABLE TRUE;
+    else()
     set_target_properties(split-loaf PROPERTIES WIN32_EXECUTABLE TRUE)
-else()
+    endif()
+
+    else()
     add_executable(split-loaf
             src/app/main.cpp
             src/core/Platform.cpp
