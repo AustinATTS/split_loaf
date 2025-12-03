@@ -6,6 +6,7 @@
 
 
 static const char* WINDOW_CLASS = "SplitLoafTray";
+static HINSTANCE g_hInstance = NULL;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
@@ -19,7 +20,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case WM_COMMAND:
             switch (LOWORD(wParam)) {
             case CMD_SETTINGS:
-                    OpenSettingsWindow(hInstance, hwnd);
+                    OpenSettingsWindow(g_hInstance, hwnd);
                     break;
 
             case CMD_EXIT:
@@ -39,12 +40,12 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int RunWindowsApp()
 {
-    HINSTANCE hInstance = GetModuleHandle(NULL);
+    g_hInstance = GetModuleHandle(NULL);
 
     // Register class
     WNDCLASS wc = {};
     wc.lpfnWndProc = WindowProc;
-    wc.hInstance = hInstance;
+    wc.hInstance = g_hInstance;
     wc.lpszClassName = WINDOW_CLASS;
     RegisterClass(&wc);
 
@@ -52,7 +53,7 @@ int RunWindowsApp()
     HWND hwnd = CreateWindowEx(
         0, WINDOW_CLASS, "Split Loaf",
         0, 0, 0, 0, 0,
-        NULL, NULL, hInstance, NULL
+        NULL, NULL, g_hInstance, NULL
     );
 
     InitTrayIcon(hwnd);
