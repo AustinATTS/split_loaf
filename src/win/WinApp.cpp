@@ -2,6 +2,8 @@
 #include "WinApp.h"
 #include "WinTray.h"
 #include "core/Platform.h"
+#include "WinSettings.h"
+
 
 static const char* WINDOW_CLASS = "SplitLoafTray";
 
@@ -17,7 +19,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         case WM_COMMAND:
             switch (LOWORD(wParam)) {
             case CMD_SETTINGS:
-                    // later
+                    OpenSettingsWindow(hInstance, hwnd);
                     break;
 
             case CMD_EXIT:
