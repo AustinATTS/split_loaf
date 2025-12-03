@@ -38,16 +38,16 @@ void WinBackend::unlockInput() {
     targetHasFocus = false;
 }
 
-void WinBackend::sendVirtualKey(uint32_t vk) {
-    INPUT in[1] = {0};
+void WinBackend::sendVirtualKey(uint32_t vk, bool KeyDown) {
+    INPUT in = {0};
 
-    in[0].type = INPUT_KEYBOARD;
-    in[0].ki.wVk = vk;
+    in.type = INPUT_KEYBOARD;
+    in.ki.wVk = vk;
     if (!KeyDown) {
         in.ki.dwFlags = KEYEVENTF_KEYUP;
     }
 
-    SendInput(1, in, sizeof(INPUT));
+    SendInput(1, &in, sizeof(INPUT));
 }
 
 bool WinBackend::processEvents() {
