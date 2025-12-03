@@ -3,19 +3,6 @@
 #include <windows.h>
 #include <stdio.h>
 
-void SendVirtualKeyToTarget(DWORD vkCode) {
-    INPUT in[2] = {0};
-
-    in[0].type = INPUT_KEYBOARD;
-    in[0].ki.wVk = vkCode;
-
-    in[1].type = INPUT_KEYBOARD;
-    in[1].ki.wVk = vkCode;
-    in[1].ki.dwFlags = KEYEVENTF_KEYUP;
-
-    SendInput(2, in, sizeof(INPUT));
-}
-
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
     if (nCode != HC_ACTION)
         return CallNextHookEx(NULL, nCode, wParam, lParam);
@@ -67,7 +54,7 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam) {
                 targetHasFocus = 1;
             }
 
-            SendVirtualKeyToTarget(kbd->vkCode);
+            WinBackend::sendVirtualKey(kbd->vkCode);
             return 1;
         }
     }
