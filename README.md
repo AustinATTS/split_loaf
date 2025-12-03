@@ -1,7 +1,7 @@
 Split Loaf Keyboard Rerouter
 ============================
 
-**Status:** I don't know what I'm doing
+**Status:** Somehow working?
 
 Overview
 --------
