@@ -12,6 +12,7 @@ if (WIN32)
             src/win/WinBackend.cpp
             src/win/WinHooks.cpp
             src/win/WinTray.cpp
+            src/win/WinApp.cpp
             src/core/Backend.h
             src/res/resource.rc
     )

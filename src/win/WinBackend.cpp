@@ -57,6 +57,5 @@ void WinBackend::sendVirtualKey(uint32_t vk) {
 }
 
 bool WinBackend::processEvents() {
-    MSG msg;
-    return GetMessage(&msg, NULL, 0, 0) > 0;
+    return true;
 }
