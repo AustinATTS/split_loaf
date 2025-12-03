@@ -14,7 +14,10 @@ void InitTrayIcon(HWND hwnd) {
     nid.uCallbackMessage = WM_USER + 1;
 
     // Load a custom icon from resource (IDI_MYICON)
-    nid.hIcon = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_APP_ICON));
+    HICON h = LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_APP_ICON));
+    if (!h) {
+        MessageBox(NULL, "Failed to load icon", "Debug", MB_OK);
+    }
     strcpy_s(nid.szTip, "Split Loaf - Idle");
 
     Shell_NotifyIcon(NIM_ADD, &nid);
