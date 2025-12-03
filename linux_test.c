@@ -1,7 +1,7 @@
 #include <string.h>
 #include <linux/uinput.h>
-#include <stdio.h>
-#include <signal.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 void emit (int fd, int type, int code, int val) {
     struct input_event ie;
