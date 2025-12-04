@@ -3,7 +3,7 @@ Split Loaf Keyboard Rerouter
 
 **Status:** Somehow working?
 
-[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)
+[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)  [![Linux Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml)
 
 Overview
 --------
