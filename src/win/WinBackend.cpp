@@ -15,47 +15,50 @@ static HWND targetWindow = NULL;
 static bool locked = false;
 static bool targetHasFocus = false;
 
-HHOOK& WinHooks_GetKeyboardHook() { return keyboardHook; }
-HWND& WinHooks_GetTargetWindow() { return targetWindow; }
-bool& WinHooks_GetLockedFlag() { return locked; }
-bool& WinHooks_GetTargetFocusFlag() { return targetHasFocus; }
-
-void WinBackend::init() {
-    keyboardHook = SetWindowsHookEx(
-        WH_KEYBOARD_LL,
-        LowLevelKeyboardProc,
-        GetModuleHandle(NULL),
-        0
-    );
+HHOOK & WinHooks_GetKeyboardHook ( ) {
+    return keyboardHook;
+}
+HWND & WinHooks_GetTargetWindow ( ) {
+    return targetWindow;
+}
+bool & WinHooks_GetLockedFlag ( ) {
+    return locked;
+}
+bool & WinHooks_GetTargetFocusFlag ( ) {
+    return targetHasFocus;
 }
 
-void WinBackend::shutdown() {
+void WinBackend::init ( ) {
+    keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL,LowLevelKeyboardProc,GetModuleHandle(NULL),0);
+}
+
+void WinBackend::shutdown ( ) {
     UnhookWindowsHookEx(keyboardHook);
 }
 
-void WinBackend::setTargetWindow(WindowHandle w) {
+void WinBackend::setTargetWindow (WindowHandle w) {
     targetWindow = (HWND)w;
 }
 
-void WinBackend::lockInput() {
+void WinBackend::lockInput ( ) {
     locked = true;
 }
 
-void WinBackend::unlockInput() {
+void WinBackend::unlockInput ( ) {
     locked = false;
     targetHasFocus = false;
 }
 
-void WinBackend::sendVirtualKey(uint32_t vk) {
+void WinBackend::sendVirtualKey (uint32_t vk) {
     INPUT in = {0};
 
     in.type = INPUT_KEYBOARD;
     in.ki.wVk = vk;
 
 
-    SendInput(1, &in, sizeof(INPUT));
+    SendInput(1, & in, sizeof(INPUT));
 }
 
-bool WinBackend::processEvents() {
+bool WinBackend::processEvents ( ) {
     return true;
 }

@@ -1,30 +1,30 @@
 #ifdef _WIN32
 #include "Platform.h"
-#include "../win/WinBackend.h"
+#include "win/WinBackend.h"
 
 namespace Platform {
 
-    void init() {
+    void init ( ) {
         WinBackend::init();
     }
 
-    void shutdown() {
+    void shutdown ( ) {
         WinBackend::shutdown();
     }
 
-    void setTargetWindow(WindowHandle w) {
+    void setTargetWindow (WindowHandle w) {
         WinBackend::setTargetWindow(w);
     }
 
-    void lockInput() {
+    void lockInput ( ) {
         WinBackend::lockInput();
     }
 
-    void unlockInput() {
+    void unlockInput ( ) {
         WinBackend::unlockInput();
     }
 
-    bool processEvents() {
+    bool processEvents ( ) {
         return WinBackend::processEvents();
     }
 

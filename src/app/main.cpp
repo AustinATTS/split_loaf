@@ -1,12 +1,12 @@
 #ifdef _WIN32
 #include <windows.h>
-extern int RunWindowsApp();
+extern int RunWindowsApp ( );
 
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
     return RunWindowsApp();
 }
 #else
-int main() {
+int main ( ) {
     return 0;
 }
 #endif

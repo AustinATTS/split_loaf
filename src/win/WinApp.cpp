@@ -5,16 +5,16 @@
 #include "WinSettings.h"
 
 
-static const char* WINDOW_CLASS = "SplitLoafTray";
+static const char * WINDOW_CLASS = "SplitLoafTray";
 static HINSTANCE g_hInstance = NULL;
 
-LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
-{
+LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
 
         case TRAY_CALLBACK:
-            if (lParam == WM_RBUTTONUP)
+            if (lParam == WM_RBUTTONUP) {
                 ShowTrayMenu(hwnd);
+            }
             break;
 
         case WM_COMMAND:
@@ -38,23 +38,16 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-int RunWindowsApp()
-{
+int RunWindowsApp ( ) {
     g_hInstance = GetModuleHandle(NULL);
 
-    // Register class
     WNDCLASS wc = {};
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = g_hInstance;
     wc.lpszClassName = WINDOW_CLASS;
-    RegisterClass(&wc);
+    RegisterClass(& wc);
 
-    // Create hidden window
-    HWND hwnd = CreateWindowEx(
-        0, WINDOW_CLASS, "Split Loaf",
-        0, 0, 0, 0, 0,
-        NULL, NULL, g_hInstance, NULL
-    );
+    HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf",0, 0, 0, 0, 0,NULL, NULL, g_hInstance, NULL);
 
     InitTrayIcon(hwnd);
 
@@ -62,9 +55,9 @@ int RunWindowsApp()
 
     MSG msg {};
     while (true) {
-        while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+        while (PeekMessage(& msg, NULL, 0, 0, PM_REMOVE)) {
+            TranslateMessage(& msg);
+            DispatchMessage(& msg);
 
             if (msg.message == WM_QUIT) {
                 Platform::shutdown();

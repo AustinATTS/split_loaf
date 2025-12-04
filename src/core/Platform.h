@@ -1,15 +1,15 @@
 #pragma once
 #include <stdint.h>
 
-using WindowHandle = void*;
+using WindowHandle = void *;
 
 namespace Platform {
-    void init();
-    void shutdown();
+    void init ( );
+    void shutdown ( );
 
-    void setTargetWindow(WindowHandle w);
-    void lockInput();
-    void unlockInput();
+    void setTargetWindow (WindowHandle w);
+    void lockInput ( );
+    void unlockInput ( );
 
-    bool processEvents();
+    bool processEvents ( );
 }
