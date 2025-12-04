@@ -29,7 +29,7 @@ bool GetRunOnStartup ( ) {
 
 void SetRunOnStartup (bool enable) {
     HKEY hKey;
-    RegOpenKeyExA(HKEY_CURRENT_USER, RUN_KEY, 0, KEY_WRITE, &hKey);
+    RegOpenKeyExA(HKEY_CURRENT_USER, RUN_KEY, 0, KEY_WRITE, & hKey);
 
     if (enable) {
         char exePath[MAX_PATH];
