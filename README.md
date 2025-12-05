@@ -65,6 +65,8 @@ Different linux distros might handle this differently as well, currently using w
 
 The test file given for linux has shown to somewhat work when used on hyprland (wayland) with arch however doesn't with crosinti penguin so they might handle inputs in different ways. It does this based on a given command to output space where if you are quick enough to move to a different window, it will send the space to that window and so it will need to be modified such that it can also switch to the target window automatically as well as give the output based on what the user tpes in.
 
+Wayland has some weird security protocols in the way it handles windows so it may be difficult to work, a scripting languages that can execute terminal xommands might be better suited so I'll need to look into this and see if it could be a suitable suggestion.
+
 Contact
 -------
 
