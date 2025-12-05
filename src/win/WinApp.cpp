@@ -6,31 +6,31 @@
 
 
 static const char * WINDOW_CLASS = "SplitLoafTray";
-static HINSTANCE g_hInstance = NULL;
+static HINSTANCE g_hInstance = NULL; // A handle to the current instance of the application.
 
 LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) {
     switch (msg) {
 
         case TRAY_CALLBACK:
             if (lParam == WM_RBUTTONUP) {
-                ShowTrayMenu(hwnd);
+                ShowTrayMenu(hwnd); // Show a menu when right clicked.
             }
             break;
 
         case WM_COMMAND:
             switch (LOWORD(wParam)) {
             case CMD_SETTINGS:
-                    OpenSettingsWindow(g_hInstance, hwnd);
+                    OpenSettingsWindow(g_hInstance, hwnd); // Open settings window when that option is selected.
                     break;
 
             case CMD_EXIT:
-                    PostQuitMessage(0);
+                    PostQuitMessage(0); // Exit the program if the option is selected.
                     break;
             }
             break;
 
         case WM_DESTROY:
-            RemoveTrayIcon();
+            RemoveTrayIcon(); // Close the app and remove it from the System Tray.
             PostQuitMessage(0);
             return 0;
     }
@@ -38,7 +38,7 @@ LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-int RunWindowsApp ( ) {
+int RunWindowsApp ( ) { // Create the application.
     g_hInstance = GetModuleHandle(NULL);
 
     WNDCLASS wc = {};
@@ -49,9 +49,9 @@ int RunWindowsApp ( ) {
 
     HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf",0, 0, 0, 0, 0,NULL, NULL, g_hInstance, NULL);
 
-    InitTrayIcon(hwnd);
+    InitTrayIcon(hwnd); // Create the System Tray icon.
 
-    Platform::init();
+    Platform::init(); // Start the main program.
 
     MSG msg {};
     while (true) {
@@ -60,7 +60,7 @@ int RunWindowsApp ( ) {
             DispatchMessage(& msg);
 
             if (msg.message == WM_QUIT) {
-                Platform::shutdown();
+                Platform::shutdown(); // Exit app if quit.
                 return 0;
             }
         }
