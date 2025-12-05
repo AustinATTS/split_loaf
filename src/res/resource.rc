@@ -1,2 +1,3 @@
 #define IDI_APP_ICON 101
+// Set the icon for the program.
 IDI_APP_ICON ICON "splitloaf.ico"
