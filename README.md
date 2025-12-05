@@ -1,4 +1,11 @@
-# Split Loaf Keyboard Rerouter [<img src="https://github.com/AustinATTS/split_loaf/blob/master/assets/splitloaf.png" width="50" />](https://github.com/AustinATTS/split_loaf/blob/master/assets/splitloaf.png)
+<h1>
+  Split Loaf Keyboard Rerouter
+  <a href="https://github.com/AustinATTS/split_loaf/blob/master/assets/splitloaf.png">
+    <img src="https://github.com/AustinATTS/split_loaf/blob/master/assets/splitloaf.png" 
+         width="60" 
+         style="vertical-align: middle; margin-left: 10px;" />
+  </a>
+</h1>
 
 **Status:** Somehow working?
 
