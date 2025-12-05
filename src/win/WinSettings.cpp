@@ -151,6 +151,6 @@ void OpenSettingsWindow (HINSTANCE hInstance, HWND parent) {
     // Create settings window.
     hWndSettings = CreateWindowA("SplitLoafSettings","Split Loaf Settings",(WS_OVERLAPPEDWINDOW & ~WS_MAXIMIZEBOX & ~WS_THICKFRAME),CW_USEDEFAULT, CW_USEDEFAULT,360, 260,parent,NULL,hInstance,NULL);
 
-    Show the settings window.
+    // Show the settings window.
     ShowWindow(hWndSettings, SW_SHOW);
 }
