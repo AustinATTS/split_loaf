@@ -16,7 +16,7 @@ void emit (int fd, int type, int code, int val) {
     write(fd, & ie, sizeof(ie));
 }
 
-int linux_main (void) {
+int main (void) {
     struct uinput_setup usetup;
 
     int fd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
