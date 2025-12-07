@@ -6,6 +6,12 @@
 #include <string>
 #include <algorithm>
 
+#include "WinSettings.h"
+
+const Keybind targetBind = WinSettings_GetTargetBind();
+const Keybind lockBind = WinSettings_GetLockBind();
+const Keybind unlockBind = WinSettings_GetUnlockBind();
+
 std::string ToLower (const std::string & s) { // Set the string to lowercase.
     std::string out = s;
     std::transform(out.begin(), out.end(), out.begin(), ::tolower);
@@ -36,6 +42,15 @@ void Tray_SetLocked (const std::string & windowName) {
     UpdateTrayTooltip("Split Loaf - " + ToUpper(windowName)); // When the keyboard is locked, the name of the window is shown in capitals.
 }
 
+bool IsKeybindPressed(const Keybind & bind, KBDLLHOOKSTRUCT * kbd) {
+    bool ctrlDown  = (GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0;
+    bool shiftDown = (GetAsyncKeyState(VK_SHIFT) & 0x8000) != 0;
+    bool altDown   = (GetAsyncKeyState(VK_MENU) & 0x8000) != 0; // ALT
+
+    return (kbd->vkCode == bind.key) && (ctrlDown  == bind.ctrl) && (shiftDown == bind.shift) && (altDown   == bind.alt);
+}
+
+
 LRESULT CALLBACK LowLevelKeyboardProc (int nCode, WPARAM wParam, LPARAM lParam) {
     if (nCode != HC_ACTION) {
         // If no action go to next.
@@ -54,7 +69,7 @@ LRESULT CALLBACK LowLevelKeyboardProc (int nCode, WPARAM wParam, LPARAM lParam) 
     }
 
     if (wParam == WM_KEYDOWN) { // For key press downs.
-        if (kbd -> vkCode == VK_F8) {
+        if (IsKeybindPressed(WinSettings_GetTargetBind(), kbd)) {
             // If F8 is pressed set the target window to the current one.
             POINT p;
             GetCursorPos(& p);
@@ -70,7 +85,7 @@ LRESULT CALLBACK LowLevelKeyboardProc (int nCode, WPARAM wParam, LPARAM lParam) 
             return 1;
         }
 
-        if (kbd -> vkCode == VK_F6) {
+        if (IsKeybindPressed(WinSettings_GetLockBind(), kbd)) {
             // If F6 is pressed, lock the keyboard to the target window.
             locked = (targetWindow != NULL);
             if (locked) {
@@ -86,7 +101,7 @@ LRESULT CALLBACK LowLevelKeyboardProc (int nCode, WPARAM wParam, LPARAM lParam) 
             return 1;
         }
 
-        if (kbd -> vkCode == VK_F7) {
+        if (IsKeybindPressed(WinSettings_GetUnlockBind(), kbd)) {
             // If F7 is pressed unlock the keyboard.
             locked = false;
             targetHasFocus = false;

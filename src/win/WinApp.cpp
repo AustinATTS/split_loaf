@@ -4,7 +4,6 @@
 #include "core/Platform.h"
 #include "WinSettings.h"
 
-
 static const char * WINDOW_CLASS = "SplitLoafTray";
 static HINSTANCE g_hInstance = NULL; // A handle to the current instance of the application.
 
@@ -38,29 +37,31 @@ LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-int RunWindowsApp ( ) { // Create the application.
+int RunWindowsApp() {
     g_hInstance = GetModuleHandle(NULL);
+
+    // Initialize keybinds & settings
+    WinSettings_Init();
 
     WNDCLASS wc = {};
     wc.lpfnWndProc = WindowProc;
     wc.hInstance = g_hInstance;
     wc.lpszClassName = WINDOW_CLASS;
-    RegisterClass(& wc);
+    RegisterClass(&wc);
 
-    HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf",0, 0, 0, 0, 0,NULL, NULL, g_hInstance, NULL);
+    HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf", 0, 0, 0, 0, 0, NULL, NULL, g_hInstance, NULL);
 
-    InitTrayIcon(hwnd); // Create the System Tray icon.
-
-    Platform::init(); // Start the main program.
+    InitTrayIcon(hwnd); // System Tray icon
+    Platform::init();   // Start main program
 
     MSG msg{};
     while (true) {
-        DWORD result = MsgWaitForMultipleObjects(0,NULL,FALSE,1,QS_ALLINPUT);
+        DWORD result = MsgWaitForMultipleObjects(0, NULL, FALSE, 1, QS_ALLINPUT);
 
         if (result == WAIT_OBJECT_0) {
-            while (PeekMessage(& msg, NULL, 0, 0, PM_REMOVE)) {
-                TranslateMessage(& msg);
-                DispatchMessage(& msg);
+            while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
 
                 if (msg.message == WM_QUIT) {
                     Platform::shutdown();
