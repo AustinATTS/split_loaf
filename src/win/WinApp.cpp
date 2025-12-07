@@ -37,10 +37,21 @@ LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-int RunWindowsApp ( ) {
+int RunWindowsApp() {
+    HANDLE hMutex = CreateMutexA(NULL, TRUE, "Global//SplitLoaf");
+    if (!hMutex) {
+        MessageBoxA(NULL, "Failed to create mutex.", "Error", MB_OK | MB_ICONERROR);
+        return 1;
+    }
+
+    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+        MessageBoxA(NULL, "Split Loaf is already running.", "Info", MB_OK | MB_ICONINFORMATION);
+        CloseHandle(hMutex);
+        return 0; // exit this duplicate instance
+    }
+
     g_hInstance = GetModuleHandle(NULL);
 
-    // Initialize keybinds & settings
     WinSettings_Init();
 
     WNDCLASS wc = {};
@@ -65,6 +76,8 @@ int RunWindowsApp ( ) {
 
                 if (msg.message == WM_QUIT) {
                     Platform::shutdown();
+                    ReleaseMutex(hMutex);
+                    CloseHandle(hMutex);
                     return 0;
                 }
             }
