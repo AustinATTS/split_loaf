@@ -5,11 +5,9 @@
 
 **Status:** Version 1.0.0 – Fully Released 🎉
 
-[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)  [![Linux Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml)
+[![Microsoft Store Page](https://get.microsoft.com/images/en-us%20light.svg)](https://apps.microsoft.com/detail9nfhj4ptjxkv?referrer=appbadge&mode=direct)
 
-<a href="https://apps.microsoft.com/detail/9nfhj4ptjxkv?referrer=appbadge&mode=direct">
-	<img src="https://get.microsoft.com/images/en-us%20light.svg" width="200"/>
-</a>
+[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)  [![Linux Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml)
 
 Overview
 --------
