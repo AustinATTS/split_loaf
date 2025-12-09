@@ -64,10 +64,16 @@ Future Improvements
 Installation
 ------------
 
+GitHub
 1. Download the latest [Windows executable](https://github.com/AustinATTS/split_loaf/releases/latest).  
 2. Move it to your preferred location.  
 3. Run it.  
 4. (Optional) Enable **Run on Startup** to have Split Loaf launch automatically with Windows.
+
+Microsoft Store
+1. Download from the [Microsoft Store](https://apps.microsoft.com/detail/9nfhj4ptjxkv?referrer=appbadge&mode=direct).
+2. Run it.
+3. (Optional) Enable **Run on Startup** to have Split Loaf launch automatically with Windows.
 
 Contact
 -------
