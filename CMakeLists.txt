@@ -29,10 +29,10 @@ else()
     add_executable(split-loaf
             src/app/main.cpp
             src/core/Platform.cpp
-            src/lin/LinuxBackend.cpp
-            src/lin/LinuxHooks.cpp
+            src/linux/LinuxBackend.cpp
+            src/linux/LinuxHooks.cpp
             src/core/Backend.h
-            src/lin/linux_test.c
-            src/lin/linux_test.h
+            src/linux/linux_test.c
+            src/linux/linux_test.h
     )
 endif()
