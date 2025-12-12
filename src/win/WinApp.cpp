@@ -4,7 +4,6 @@
 #include "core/Platform.h"
 #include "WinSettings.h"
 
-
 static const char * WINDOW_CLASS = "SplitLoafTray";
 static HINSTANCE g_hInstance = NULL; // A handle to the current instance of the application.
 
@@ -38,8 +37,22 @@ LRESULT CALLBACK WindowProc (HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam) 
     return DefWindowProc(hwnd, msg, wParam, lParam);
 }
 
-int RunWindowsApp ( ) { // Create the application.
+int RunWindowsApp() {
+    HANDLE hMutex = CreateMutexA(NULL, TRUE, "Global//SplitLoaf");
+    if (!hMutex) {
+        MessageBoxA(NULL, "Failed to create mutex.", "Error", MB_OK | MB_ICONERROR);
+        return 1;
+    }
+
+    if (GetLastError() == ERROR_ALREADY_EXISTS) {
+        MessageBoxA(NULL, "Split Loaf is already running.", "Info", MB_OK | MB_ICONINFORMATION);
+        CloseHandle(hMutex);
+        return 0; // exit this duplicate instance
+    }
+
     g_hInstance = GetModuleHandle(NULL);
+
+    WinSettings_Init();
 
     WNDCLASS wc = {};
     wc.lpfnWndProc = WindowProc;
@@ -47,21 +60,26 @@ int RunWindowsApp ( ) { // Create the application.
     wc.lpszClassName = WINDOW_CLASS;
     RegisterClass(& wc);
 
-    HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf",0, 0, 0, 0, 0,NULL, NULL, g_hInstance, NULL);
+    HWND hwnd = CreateWindowEx(0, WINDOW_CLASS, "Split Loaf", 0, 0, 0, 0, 0, NULL, NULL, g_hInstance, NULL);
 
-    InitTrayIcon(hwnd); // Create the System Tray icon.
+    InitTrayIcon(hwnd); // System Tray icon
+    Platform::init();   // Start main program
 
-    Platform::init(); // Start the main program.
-
-    MSG msg {};
+    MSG msg{};
     while (true) {
-        while (PeekMessage(& msg, NULL, 0, 0, PM_REMOVE)) {
-            TranslateMessage(& msg);
-            DispatchMessage(& msg);
+        DWORD result = MsgWaitForMultipleObjects(0, NULL, FALSE, 1, QS_ALLINPUT);
 
-            if (msg.message == WM_QUIT) {
-                Platform::shutdown(); // Exit app if quit.
-                return 0;
+        if (result == WAIT_OBJECT_0) {
+            while (PeekMessage(& msg, NULL, 0, 0, PM_REMOVE)) {
+                TranslateMessage(& msg);
+                DispatchMessage(& msg);
+
+                if (msg.message == WM_QUIT) {
+                    Platform::shutdown();
+                    ReleaseMutex(hMutex);
+                    CloseHandle(hMutex);
+                    return 0;
+                }
             }
         }
 
