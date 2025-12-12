@@ -2,6 +2,7 @@
 #include <linux/uinput.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 
 void emit (int fd, int type, int code, int val) {
@@ -16,7 +17,9 @@ void emit (int fd, int type, int code, int val) {
     write(fd, & ie, sizeof(ie));
 }
 
-int linux_main (void) {
+int linux_main ( ) {
+
+    printf("TEST LINUX");
     struct uinput_setup usetup;
 
     int fd = open("/dev/uinput", O_WRONLY | O_NONBLOCK);
