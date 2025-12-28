@@ -1,15 +1,16 @@
-#ifdef _WIN32 // Will only build the Windows version for Windows devices.
+#ifdef _WIN32
 #include <windows.h>
 extern int RunWindowsApp ( );
 
-// Windows expects a WinMain as the application entry point so it doesn't attempt to run it through the terminal.
 int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
-    return RunWindowsApp(); // Call the main start function from WinApp.cpp.
+    return RunWindowsApp();
 }
 
-#else // For other operating systems just return 0 as they haven't been implemented yet.
+#else
+
+extern int RunLinuxApp ( );
 
 int main ( ) {
-    return linux_main();
+    return RunLinuxApp();
 }
 #endif
