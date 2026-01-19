@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img src="https://github.com/AustinATTS/split-loaf/blob/master/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
+	<img src="https://github.com/AustinATTS/split_loaf/blob/master/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
 	Split Loaf - Keyboard Rerouter
 </h1>
 
@@ -7,7 +7,7 @@
 
 [![Microsoft Store Page](https://get.microsoft.com/images/en-us%20light.svg)](https://apps.microsoft.com/detail/9nfhj4ptjxkv?hl=en-GB&gl=GB)
 
-[![Windows Build Status](https://github.com/AustinATTS/split-loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split-loaf/actions/workflows/build.yml)
+[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)
 
 Overview
 --------
@@ -58,9 +58,9 @@ Installation
 ------------
 
 GitHub
-1. Download the latest [Windows executable](https://github.com/AustinATTS/split-loaf/releases/latest).
-2. Move it to your preferred location.
-3. Run it.
+1. Download the latest [Windows executable](https://github.com/AustinATTS/split_loaf/releases/latest).  
+2. Move it to your preferred location.  
+3. Run it.  
 4. (Optional) Enable **Run on Startup** to have Split Loaf launch automatically with Windows.
 
 Microsoft Store
