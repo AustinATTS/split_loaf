@@ -3,7 +3,7 @@
 	Split Loaf - Keyboard Rerouter
 </h1>
 
-**Status:** Version 1.0.0 – Fully Released 🎉
+**Status:** Version 1.0.0 – Fully Released
 
 [![Microsoft Store Page](https://get.microsoft.com/images/en-us%20light.svg)](https://apps.microsoft.com/detail/9nfhj4ptjxkv?hl=en-GB&gl=GB)
 
@@ -45,11 +45,6 @@ How It Works
 4. Press **F7** to unlock the keyboard and return to normal input behaviour.
 
 Internally, Split Loaf uses a **low-level keyboard hook** and sends messages directly to the target window. Modifier keys are preserved while locked.
-
-Linux Versions
---------------
-
-Split Loaf currently relies on Windows APIs, so Linux support requires a different method for keyboard input and window detection. Early testing on Wayland (Hyprland with Arch) shows partial functionality, but challenges exist with active window detection and input security protocols. Further exploration is ongoing.
 
 Future Improvements
 -------------------

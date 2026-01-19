@@ -8,9 +8,4 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLin
 
 #else
 
-extern int RunLinuxApp ( );
-
-int main ( ) {
-    return RunLinuxApp();
-}
 #endif
