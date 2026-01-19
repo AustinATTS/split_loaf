@@ -3,4 +3,4 @@
 /cmake-build-debug
 /cmake-build-release
 /cmake-build-relwithdebinfo
-/src/linux/linux_test
+/helpers

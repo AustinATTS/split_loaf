@@ -7,7 +7,7 @@
 
 [![Microsoft Store Page](https://get.microsoft.com/images/en-us%20light.svg)](https://apps.microsoft.com/detail/9nfhj4ptjxkv?hl=en-GB&gl=GB)
 
-[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)  [![Linux Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build_linux.yml)
+[![Windows Build Status](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split_loaf/actions/workflows/build.yml)
 
 Overview
 --------
