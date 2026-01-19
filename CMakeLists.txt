@@ -10,7 +10,7 @@ if (WIN32)
             src/app/main.cpp
 
             src/core/Platform.cpp
-            src/core/Backend.h
+            src/core/Backend.hpp
 
             src/win/WinBackend.cpp
             src/win/WinHooks.cpp

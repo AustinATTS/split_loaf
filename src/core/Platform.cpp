@@ -1,35 +1,29 @@
-#ifdef _WIN32
-// Separate code for Windows devices.
-#include "Platform.h"
-#include "win/WinBackend.h"
+#include "Platform.hpp"
+#include "win/WinBackend.hpp"
 
 namespace Platform {
 
     void init ( ) {
-        WinBackend::init(); // Start.
+        WinBackend::init();
     }
 
     void shutdown ( ) {
-        WinBackend::shutdown(); // End.
+        WinBackend::shutdown();
     }
 
     void setTargetWindow (WindowHandle w) {
-        WinBackend::setTargetWindow(w); // Assign target window.
+        WinBackend::setTargetWindow(w);
     }
 
     void lockInput ( ) {
-        WinBackend::lockInput(); // Lock the keyboard to the targeted window.
+        WinBackend::lockInput();
     }
 
     void unlockInput ( ) {
-        WinBackend::unlockInput(); // Unlock the keyboard.
+        WinBackend::unlockInput();
     }
 
     bool processEvents ( ) {
-        return WinBackend::processEvents(); // Process events.
+        return WinBackend::processEvents();
     }
-
 }
-#else
-// Currently do nothing for non Windows devices.
-#endif

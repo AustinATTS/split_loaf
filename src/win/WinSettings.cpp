@@ -1,16 +1,14 @@
-#include "WinSettings.h"
-#include "WinHooks.h"
+#include "WinSettings.hpp"
+#include "WinHooks.hpp"
 #include <windows.h>
 #include <string>
 
 static HWND hWndSettings = NULL;
 
-// Keybinds.
 static Keybind targetBind;
 static Keybind lockBind;
 static Keybind unlockBind;
 
-// Default keybinds if nothing is saved yet.
 static const Keybind DEFAULT_TARGET  = {
     VK_F8,
     false,

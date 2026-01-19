@@ -1,8 +1,8 @@
 #include <windows.h>
-#include "WinApp.h"
-#include "WinTray.h"
-#include "core/Platform.h"
-#include "WinSettings.h"
+#include "WinApp.hpp"
+#include "WinTray.hpp"
+#include "core/Platform.hpp"
+#include "WinSettings.hpp"
 
 static const char * WINDOW_CLASS = "SplitLoafTray";
 static HINSTANCE g_hInstance = NULL;

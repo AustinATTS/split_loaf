@@ -1,7 +1,7 @@
 #pragma once
 #include <stdint.h>
 #include <windows.h>
-#include "core/Platform.h"
+#include "core/Platform.hpp"
 
 namespace WinBackend {
     void init ( );
