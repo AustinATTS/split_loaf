@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img src="https://gitlab.com/AustinATTS/split-loaf/-/raw/master/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
+	<img src="https://codeberg.org/AustinATTS/split-loaf/raw/commit/1f178e9048395fdf1dc078179e26276bfad228e1/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
 	Split Loaf - Keyboard Rerouter
 </h1>
 
@@ -56,9 +56,9 @@ Installation
 ------------
 
 GitHub
-1. Download the latest [Windows executable](https://github.com/AustinATTS/split-loaf/releases/latest).  
-2. Move it to your preferred location.  
-3. Run it.  
+1. Download the latest [Windows executable](https://github.com/AustinATTS/split-loaf/releases/latest).
+2. Move it to your preferred location.
+3. Run it.
 4. (Optional) Enable **Run on Startup** to have Split Loaf launch automatically with Windows.
 
 Microsoft Store
