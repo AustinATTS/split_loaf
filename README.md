@@ -1,11 +1,13 @@
 <h1 align="center">
-	<img src="https://codeberg.org/AustinATTS/split-loaf/raw/commit/1f178e9048395fdf1dc078179e26276bfad228e1/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
+	<img src="https://github.com/AustinATTS/split-loaf/blob/master/assets/Logo/Split%20Loaf%202160x2160.png" width="" height="250" alt="Logo"/></br>
 	Split Loaf - Keyboard Rerouter
 </h1>
 
 **Status:** Version 1.0.0 – Fully Released
 
 [![Microsoft Store Page](https://get.microsoft.com/images/en-us%20light.svg)](https://apps.microsoft.com/detail/9nfhj4ptjxkv?hl=en-GB&gl=GB)
+
+[![Windows Build Status](https://github.com/AustinATTS/split-loaf/actions/workflows/build.yml/badge.svg)](https://github.com/AustinATTS/split-loaf/actions/workflows/build.yml)
 
 Overview
 --------
